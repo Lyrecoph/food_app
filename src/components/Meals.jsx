@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import MealItem from "./MealItem";
 
 // Composant permettant de charger les données relatives aux repas à partir du backend
 export default function Meals(){
@@ -26,7 +27,7 @@ export default function Meals(){
     return(
         <ul id="meals">
             {loadedMeals.map((meal) => (
-                <li key={meal.id}>{meal.name}</li>
+                <MealItem key={meal.id} meal={meal} />
             ))}
         </ul>
     )
