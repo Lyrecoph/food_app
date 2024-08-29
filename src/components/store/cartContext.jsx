@@ -5,7 +5,7 @@ import { createContext, useContext, useReducer } from "react";
 const CartContext = createContext({
     items: [],
     addItem: (item) => {},
-    removeitem: (id) => {}
+    removeItem: (id) => {}
 })
 
 // cette fonction a pour objectif de renvoyer un état MAJ
