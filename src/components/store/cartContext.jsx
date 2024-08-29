@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer } from "react";
 // Diffusion des données aux composants
 
 // 
-const CartContext = useContext({
+const CartContext = createContext({
     items: [],
     addItem: (item) => {},
     removeitem: (id) => {}
