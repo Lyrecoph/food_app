@@ -45,7 +45,7 @@ export default function useHttp(url, config, initialData){
                 const resData = await sendHttpRequest(url, config);
                 setData(resData);
             } catch (error) {
-                setError(error.message)
+                setError(error.message || 'Something went wrong');
             }
             setIsLoading(false);
         }, [url, config])
