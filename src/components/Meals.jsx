@@ -1,29 +1,24 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import MealItem from "./MealItem";
+import useHttp from "./hooks/useHttp";
+
+const requestConfig = {};
 
 // Composant permettant de charger les données relatives aux repas à partir du backend
 export default function Meals(){
-    // Etat a été crée au premier à bord vu qu'au départ les données ne seront pas 
-    // encore disponible et qu'il faut mettre l'interface utilisateur à jour
-    const [loadedMeals, setLoadedMeals] = useState([]);
+    // hook personnalisé permettant de gérer l'état des erreurs,
+    // l'état de chargement de donnée, et les données
+    const {
+        data: loadedMeals, 
+        isLoading, 
+        error,
+    } = useHttp('http://localhost:3000/meals', requestConfig, []);
 
-    useEffect(() => {
-        async function fetchMeals(){
-            //recupère les données relatives aux repas
-            const response = await fetch('http://localhost:3000/meals');
+    if(isLoading){
+        return <p>Fetching meals...</p>
+    }
     
-            if(!response.ok){
-    
-            }
-            // extraction des données 
-            const meals = await response.json();
-            setLoadedMeals(meals);
-        };
-
-        fetchMeals();
-        
-    }, [])
     return(
         <ul id="meals">
             {loadedMeals.map((meal) => (
