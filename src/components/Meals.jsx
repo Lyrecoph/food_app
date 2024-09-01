@@ -1,17 +1,18 @@
+import { useEffect } from "react";
+import { useState } from "react";
+import MealItem from "./MealItem";
 import useHttp from "./hooks/useHttp";
 import Error from "./Error";
-import MealItem from "./MealItem";
 
-const requestConfig = {};
+const requestConfig = { };
 
 // Composant permettant de charger les données relatives aux repas à partir du backend
 export default function Meals(){
-    // hook personnalisé permettant de gérer l'état des erreurs,
-    // l'état de chargement de donnée, et les données
+    
     const {
-        data: loadedMeals, 
+        data: loadedMeals,
         isLoading, 
-        error,
+        error, 
     } = useHttp('http://localhost:3000/meals', requestConfig, []);
 
     if(isLoading){
@@ -21,7 +22,7 @@ export default function Meals(){
     if(error){
         return <Error title="Failed to fetch meals" message={error} />
     }
-    
+
     return(
         <ul id="meals">
             {loadedMeals.map((meal) => (

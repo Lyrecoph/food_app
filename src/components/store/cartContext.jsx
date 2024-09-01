@@ -5,7 +5,8 @@ import { createContext, useContext, useReducer } from "react";
 const CartContext = createContext({
     items: [],
     addItem: (item) => {},
-    removeItem: (id) => {}
+    removeItem: (id) => {},
+    clearCart: () => {}
 })
 
 // cette fonction a pour objectif de renvoyer un état MAJ
@@ -67,6 +68,11 @@ function cartReducer(state, action){
         return {...state, items: updatedItems}
     }
 
+    // consiste à vider le panier
+    if(action.type === 'CLEAR_CART'){
+        return { ...state, items: []}
+    }
+
     // sinon du coup retournons tout simplement l'état
     return state
 }
@@ -87,10 +93,15 @@ export function CartContextProvider({ children }){
         dispatchCartAction({ type: 'REMOVE_ITEM', id})
     }
 
+    function clearCart(){
+        dispatchCartAction({ type: 'CLEAR_CART'})
+    }
+
     const cartContext = {
         items: cart.items,
         addItem,
-        removeItem
+        removeItem,
+        clearCart
     }
 
     return <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>
