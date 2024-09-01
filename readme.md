@@ -2,6 +2,12 @@
 
 A full-stack food ordering application that allows users to browse available meals, add them to a cart, and place orders. The backend is built with Node.js and Express, while the frontend is developed using React, leveraging modern hooks and context for state management.
 
+![](public/screeFoodApp1.png)
+![](public/screeFoodApp2.png)
+![](public/screeFoodApp3.png)
+![](public/screeFoodApp4.png)
+![](public/screeFoodApp5.png)
+
 
 # Project Description
 
